@@ -7,6 +7,7 @@ class Observation(models.Model):
     description = models.TextField()
     observed_at = models.DateTimeField()
     agent = models.ForeignKey(User, on_delete=models.CASCADE)
+    hypotheses = models.ManyToManyField('Hypothesis')
 
     def __str__(self): # equivalent toString
         return self.name
@@ -24,3 +25,17 @@ class Action(models.Model):
     
     def get_absolute_url(self):
         return reverse('observation-detail', kwargs={'observation_id': self.observation.id})
+
+class Hypothesis(models.Model):
+    STATUSES = [
+        ('open', 'Open'),
+        ('supported', 'Supported'),
+        ('refuted', 'Refuted'),
+        ('inconclusive', 'Inconclusive'),
+    ]
+    statement = models.CharField(max_length=200)
+    status = models.CharField(max_length=20, choices=STATUSES, default='open')
+    created_at = models.DateTimeField()
+
+    def __str__(self):
+        return self.statement
