@@ -10,7 +10,7 @@ class Observation(models.Model):
         return self.name
     
     def get_absolute_url(self):
-        return reverse('observation-detail', kwargs={'observation_id': self.id})
+        return reverse('observation-detail', kwargs={'observation_id': self.observation.id})
 
 class Action(models.Model):
     description = models.TextField()
@@ -19,3 +19,6 @@ class Action(models.Model):
 
     def __str__(self):
         return self.description
+    
+    def get_absolute_url(self):
+        return reverse('observation-detail', kwargs={'observation_id': self.observation.id})

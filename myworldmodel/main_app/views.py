@@ -1,11 +1,10 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, Http404
+from django.urls import reverse
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.utils import timezone
-from .models import Observation
+from .models import Observation, Action
 from .forms import ActionForm
-
-
 
 def home(request):
     return HttpResponse('<h1>My World Model</h1>')
@@ -49,3 +48,13 @@ class ObservationUpdate(UpdateView):
 class ObservationDelete(DeleteView):
     model = Observation
     success_url = '/observations/'
+
+class ActionUpdate(UpdateView):
+    model = Action
+    fields = ['description']
+
+class ActionDelete(DeleteView):
+    model = Action
+
+    def get_success_url(self):
+        return reverse('observation-detail', kwargs={'observation_id': self.object.observation.id})
