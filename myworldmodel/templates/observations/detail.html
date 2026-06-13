@@ -3,15 +3,21 @@
 <h1>{{ observation.name }}</h1>
 <p>{{ observation.description }}</p>
 <p>Observed at: {{ observation.observed_at }}</p>
-<a href="{% url 'observation-update' observation.id %}">Edit</a>
-<a href="{% url 'observation-delete' observation.id %}">Delete</a>
+<p>Agent: {{ observation.agent.username }}</p>
+
+{% if request.user == observation.agent %}
+  <a href="{% url 'observation-update' observation.id %}">Edit</a>
+  <a href="{% url 'observation-delete' observation.id %}">Delete</a>
+{% endif %}
 
 <h2>Actions</h2>
+{% if request.user == observation.agent %}
 <form action="{% url 'add-action' observation.id %}" method="post">
   {% csrf_token %}
   {{ action_form.as_p }}
   <button type="submit">Log Action</button>
 </form>
+{% endif %}
 <ul>
   {% for action in observation.action_set.all %}
     <li>

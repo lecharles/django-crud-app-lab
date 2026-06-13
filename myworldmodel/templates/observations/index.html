@@ -4,7 +4,7 @@
 <a href="{% url 'observation-create' %}">Add a New Observation</a>
 <ul>
   {% for observation in observations %}
-    <li><a href="{% url 'observation-detail' observation.id %}">{{ observation.name }}</a></li>
+    <li><a href="{% url 'observation-detail' observation.id %}">{{ observation.name }}</a> by {{ observation.agent.username }}</li>
   {% endfor %}
 </ul>
 {% endblock %}
