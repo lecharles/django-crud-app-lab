@@ -37,5 +37,8 @@ class Hypothesis(models.Model):
     status = models.CharField(max_length=20, choices=STATUSES, default='open')
     created_at = models.DateTimeField()
 
+    class Meta:
+        verbose_name_plural = 'Hypotheses' # Django docs option that sets a model's plural name
+
     def __str__(self):
         return self.statement
