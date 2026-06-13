@@ -1,0 +1,337 @@
+[
+  {
+    "model": "main_app.hypothesis",
+    "pk": 1,
+    "fields": {
+      "statement": "Sensor drift is producing phantom readings",
+      "status": "open",
+      "created_at": "2026-06-02T14:00:00Z"
+    }
+  },
+  {
+    "model": "main_app.hypothesis",
+    "pk": 2,
+    "fields": {
+      "statement": "An undetected environmental shift hit the facility at dusk",
+      "status": "supported",
+      "created_at": "2026-06-03T09:30:00Z"
+    }
+  },
+  {
+    "model": "main_app.hypothesis",
+    "pk": 3,
+    "fields": {
+      "statement": "Power instability is cascading across edge devices",
+      "status": "open",
+      "created_at": "2026-06-04T11:15:00Z"
+    }
+  },
+  {
+    "model": "main_app.hypothesis",
+    "pk": 4,
+    "fields": {
+      "statement": "There was unlogged physical access overnight",
+      "status": "supported",
+      "created_at": "2026-06-05T08:00:00Z"
+    }
+  },
+  {
+    "model": "main_app.hypothesis",
+    "pk": 5,
+    "fields": {
+      "statement": "Clock desync is misaligning the event logs",
+      "status": "inconclusive",
+      "created_at": "2026-06-06T16:45:00Z"
+    }
+  },
+  {
+    "model": "main_app.observation",
+    "pk": 1,
+    "fields": {
+      "name": "Light dropped at dusk",
+      "description": "Ambient light fell faster than the model predicted in sector A.",
+      "observed_at": "2026-06-01T20:05:00Z",
+      "agent": ["agent0"],
+      "hypotheses": [2]
+    }
+  },
+  {
+    "model": "main_app.observation",
+    "pk": 2,
+    "fields": {
+      "name": "Floor sensor spiked",
+      "description": "Pressure reading jumped in sector A with no movement logged.",
+      "observed_at": "2026-06-01T22:40:00Z",
+      "agent": ["agent0"],
+      "hypotheses": [1]
+    }
+  },
+  {
+    "model": "main_app.observation",
+    "pk": 3,
+    "fields": {
+      "name": "Door held open overnight",
+      "description": "Entry sensor read open from 0200 to 0600 with no badge events logged.",
+      "observed_at": "2026-06-02T02:00:00Z",
+      "agent": ["agent1"],
+      "hypotheses": [4]
+    }
+  },
+  {
+    "model": "main_app.observation",
+    "pk": 4,
+    "fields": {
+      "name": "Temperature dropped four degrees",
+      "description": "HVAC zone B cooled without any setpoint change.",
+      "observed_at": "2026-06-02T13:20:00Z",
+      "agent": ["agent1"],
+      "hypotheses": [2]
+    }
+  },
+  {
+    "model": "main_app.observation",
+    "pk": 5,
+    "fields": {
+      "name": "Network latency burst",
+      "description": "Edge node round trip times tripled for twelve minutes.",
+      "observed_at": "2026-06-03T10:10:00Z",
+      "agent": ["agent2"],
+      "hypotheses": [3]
+    }
+  },
+  {
+    "model": "main_app.observation",
+    "pk": 6,
+    "fields": {
+      "name": "Battery drain anomaly",
+      "description": "A sensor pack lost eighteen percent charge in an hour while idle.",
+      "observed_at": "2026-06-03T15:55:00Z",
+      "agent": ["agent2"],
+      "hypotheses": [1, 3]
+    }
+  },
+  {
+    "model": "main_app.observation",
+    "pk": 7,
+    "fields": {
+      "name": "Vibration on the east wall",
+      "description": "The accelerometer logged repeating low frequency pulses.",
+      "observed_at": "2026-06-04T07:30:00Z",
+      "agent": ["agent3"],
+      "hypotheses": [1, 4]
+    }
+  },
+  {
+    "model": "main_app.observation",
+    "pk": 8,
+    "fields": {
+      "name": "Humidity climbed in storage",
+      "description": "Relative humidity rose twenty two percent overnight in room C.",
+      "observed_at": "2026-06-04T23:10:00Z",
+      "agent": ["agent3"],
+      "hypotheses": [2]
+    }
+  },
+  {
+    "model": "main_app.observation",
+    "pk": 9,
+    "fields": {
+      "name": "Camera feed froze",
+      "description": "The sector D camera held a static frame for nine minutes.",
+      "observed_at": "2026-06-05T12:00:00Z",
+      "agent": ["agent4"],
+      "hypotheses": [3, 5]
+    }
+  },
+  {
+    "model": "main_app.observation",
+    "pk": 10,
+    "fields": {
+      "name": "Unlogged motion at 0314",
+      "description": "A motion sensor fired with no matching badge or camera event.",
+      "observed_at": "2026-06-05T03:14:00Z",
+      "agent": ["agent4"],
+      "hypotheses": [4, 5]
+    }
+  },
+  {
+    "model": "main_app.action",
+    "pk": 1,
+    "fields": {
+      "description": "Cross checked the ambient light model against cloud cover data.",
+      "taken_at": "2026-06-01T20:20:00Z",
+      "observation": 1
+    }
+  },
+  {
+    "model": "main_app.action",
+    "pk": 2,
+    "fields": {
+      "description": "Flagged the dusk window for recalibration.",
+      "taken_at": "2026-06-01T20:35:00Z",
+      "observation": 1
+    }
+  },
+  {
+    "model": "main_app.action",
+    "pk": 3,
+    "fields": {
+      "description": "Queried the nearest camera feed and found the room empty.",
+      "taken_at": "2026-06-01T22:55:00Z",
+      "observation": 2
+    }
+  },
+  {
+    "model": "main_app.action",
+    "pk": 4,
+    "fields": {
+      "description": "Logged the spike as a probable false positive after review.",
+      "taken_at": "2026-06-01T23:10:00Z",
+      "observation": 2
+    }
+  },
+  {
+    "model": "main_app.action",
+    "pk": 5,
+    "fields": {
+      "description": "Pulled the badge logs for the window and found none.",
+      "taken_at": "2026-06-02T06:15:00Z",
+      "observation": 3
+    }
+  },
+  {
+    "model": "main_app.action",
+    "pk": 6,
+    "fields": {
+      "description": "Escalated to facilities for a physical check.",
+      "taken_at": "2026-06-02T06:30:00Z",
+      "observation": 3
+    }
+  },
+  {
+    "model": "main_app.action",
+    "pk": 7,
+    "fields": {
+      "description": "Compared zone B against adjacent zones and only B dropped.",
+      "taken_at": "2026-06-02T13:40:00Z",
+      "observation": 4
+    }
+  },
+  {
+    "model": "main_app.action",
+    "pk": 8,
+    "fields": {
+      "description": "Opened a ticket for an HVAC sensor audit.",
+      "taken_at": "2026-06-02T14:00:00Z",
+      "observation": 4
+    }
+  },
+  {
+    "model": "main_app.action",
+    "pk": 9,
+    "fields": {
+      "description": "Traced the route and isolated the edge node.",
+      "taken_at": "2026-06-03T10:25:00Z",
+      "observation": 5
+    }
+  },
+  {
+    "model": "main_app.action",
+    "pk": 10,
+    "fields": {
+      "description": "Failed traffic over to the backup path.",
+      "taken_at": "2026-06-03T10:40:00Z",
+      "observation": 5
+    }
+  },
+  {
+    "model": "main_app.action",
+    "pk": 11,
+    "fields": {
+      "description": "Inspected the power draw timeline for spikes.",
+      "taken_at": "2026-06-03T16:10:00Z",
+      "observation": 6
+    }
+  },
+  {
+    "model": "main_app.action",
+    "pk": 12,
+    "fields": {
+      "description": "Swapped the sensor pack and bench tested the old one.",
+      "taken_at": "2026-06-03T16:30:00Z",
+      "observation": 6
+    }
+  },
+  {
+    "model": "main_app.action",
+    "pk": 13,
+    "fields": {
+      "description": "Matched the pulse timing against the HVAC compressor cycle.",
+      "taken_at": "2026-06-04T07:50:00Z",
+      "observation": 7
+    }
+  },
+  {
+    "model": "main_app.action",
+    "pk": 14,
+    "fields": {
+      "description": "Placed a second accelerometer for confirmation.",
+      "taken_at": "2026-06-04T08:10:00Z",
+      "observation": 7
+    }
+  },
+  {
+    "model": "main_app.action",
+    "pk": 15,
+    "fields": {
+      "description": "Checked the dehumidifier runtime logs.",
+      "taken_at": "2026-06-04T23:30:00Z",
+      "observation": 8
+    }
+  },
+  {
+    "model": "main_app.action",
+    "pk": 16,
+    "fields": {
+      "description": "Sealed and retested the room C vent.",
+      "taken_at": "2026-06-04T23:50:00Z",
+      "observation": 8
+    }
+  },
+  {
+    "model": "main_app.action",
+    "pk": 17,
+    "fields": {
+      "description": "Restarted the sector D camera service.",
+      "taken_at": "2026-06-05T12:15:00Z",
+      "observation": 9
+    }
+  },
+  {
+    "model": "main_app.action",
+    "pk": 18,
+    "fields": {
+      "description": "Pulled the frame buffer logs around the freeze.",
+      "taken_at": "2026-06-05T12:30:00Z",
+      "observation": 9
+    }
+  },
+  {
+    "model": "main_app.action",
+    "pk": 19,
+    "fields": {
+      "description": "Correlated the motion event with the camera freeze in sector D.",
+      "taken_at": "2026-06-05T03:30:00Z",
+      "observation": 10
+    }
+  },
+  {
+    "model": "main_app.action",
+    "pk": 20,
+    "fields": {
+      "description": "Flagged 0314 as a candidate coordinated anomaly.",
+      "taken_at": "2026-06-05T03:45:00Z",
+      "observation": 10
+    }
+  }
+]

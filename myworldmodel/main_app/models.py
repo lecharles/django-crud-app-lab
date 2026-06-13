@@ -38,7 +38,7 @@ class Hypothesis(models.Model):
     created_at = models.DateTimeField()
 
     class Meta:
-        verbose_name_plural = 'Hypotheses' # Django docs option that sets a model's plural name
+        verbose_name_plural = 'Hypotheses' # https://docs.djangoproject.com/en/6.0/ref/models/options/#verbose-name-plural
 
     def __str__(self):
         return self.statement
