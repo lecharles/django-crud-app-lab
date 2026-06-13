@@ -3,6 +3,8 @@ from django.http import HttpResponse, Http404
 from django.urls import reverse
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.utils import timezone
+from django.contrib.auth import login
+from django.contrib.auth.forms import UserCreationForm
 from .models import Observation, Action
 from .forms import ActionForm
 
@@ -32,6 +34,19 @@ def add_action(request, observation_id):
         new_action.taken_at = timezone.now()
         new_action.save()
     return redirect('observation-detail', observation_id=observation_id)
+
+def signup(request):
+    error_message = ''
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect('observation-index')
+        else:
+            error_message = 'Invalid sign up - try again'
+    form = UserCreationForm()
+    return render(request, 'registration/signup.html', {'form': form, 'error_message': error_message})
 
 class ObservationCreate(CreateView):
     model = Observation
