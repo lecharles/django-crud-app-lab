@@ -12,4 +12,5 @@ urlpatterns = [
     path('actions/<int:pk>/update/', views.ActionUpdate.as_view(), name='action-update'),
     path('actions/<int:pk>/delete/', views.ActionDelete.as_view(), name='action-delete'),
     path('accounts/signup/', views.signup, name='signup'),
+    path('overview/', views.overview, name='overview'),
 ]

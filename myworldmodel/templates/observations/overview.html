@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>World Model Overview</h1>
+<table border="1" cellpadding="6">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Observation</th>
+      <th>Agent</th>
+      <th>Observed</th>
+      <th>Actions</th>
+      <th>Hypotheses</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for observation in observations %}
+    <tr>
+      <td>{{ observation.id }}</td>
+      <td>{{ observation.name }}</td>
+      <td>{{ observation.agent.username }}</td>
+      <td>{{ observation.observed_at }}</td>
+      <td>
+        <table border="1" cellpadding="4">
+          {% for action in observation.action_set.all %}
+          <tr><td>{{ action.description }}</td></tr>
+          {% endfor %}
+        </table>
+      </td>
+      <td>
+        <table border="1" cellpadding="4">
+          {% for hypothesis in observation.hypotheses.all %}
+          <tr>
+            <td>H{{ hypothesis.id }}</td>
+            <td>{{ hypothesis.statement }} ({{ hypothesis.get_status_display }})</td>
+          </tr>
+          {% endfor %}
+        </table>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

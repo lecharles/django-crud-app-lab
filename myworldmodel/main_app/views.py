@@ -18,6 +18,11 @@ def observations_index(request):
     observations = Observation.objects.all()
     return render(request, 'observations/index.html', {'observations': observations})
 
+@login_required # table join observation to its agent, actions, and hypotheses
+def overview(request):
+    observations = Observation.objects.all()
+    return render(request, 'observations/overview.html', {'observations': observations})
+
 @login_required
 def observations_detail(request, observation_id):
     try:
