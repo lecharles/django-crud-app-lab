@@ -1,8 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse, Http404
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.utils import timezone
 from .models import Observation
+from .forms import ActionForm
 
 
 
@@ -18,7 +19,20 @@ def observations_detail(request, observation_id):
         observation = Observation.objects.get(id=observation_id)
     except Observation.DoesNotExist:
         raise Http404('Observation does not exist')
-    return render(request, 'observations/detail.html', {'observation': observation})
+    action_form = ActionForm()
+    return render(request, 'observations/detail.html', {
+        'observation': observation,
+        'action_form': action_form,
+    })
+
+def add_action(request, observation_id):
+    form = ActionForm(request.POST)
+    if form.is_valid():
+        new_action = form.save(commit=False)
+        new_action.observation_id = observation_id
+        new_action.taken_at = timezone.now()
+        new_action.save()
+    return redirect('observation-detail', observation_id=observation_id)
 
 class ObservationCreate(CreateView):
     model = Observation

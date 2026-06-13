@@ -11,3 +11,11 @@ class Observation(models.Model):
     
     def get_absolute_url(self):
         return reverse('observation-detail', kwargs={'observation_id': self.id})
+
+class Action(models.Model):
+    description = models.TextField()
+    taken_at = models.DateTimeField()
+    observation = models.ForeignKey(Observation, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.description

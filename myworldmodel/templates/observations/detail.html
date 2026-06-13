@@ -5,4 +5,16 @@
 <p>Observed at: {{ observation.observed_at }}</p>
 <a href="{% url 'observation-update' observation.id %}">Edit</a>
 <a href="{% url 'observation-delete' observation.id %}">Delete</a>
+
+<h2>Actions</h2>
+<form action="{% url 'add-action' observation.id %}" method="post">
+  {% csrf_token %}
+  {{ action_form.as_p }}
+  <button type="submit">Log Action</button>
+</form>
+<ul>
+  {% for action in observation.action_set.all %}
+    <li>{{ action.description }} ({{ action.taken_at }})</li>
+  {% endfor %}
+</ul>
 {% endblock %}

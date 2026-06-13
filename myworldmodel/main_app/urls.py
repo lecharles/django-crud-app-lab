@@ -8,4 +8,5 @@ urlpatterns = [
     path('observations/<int:observation_id>/', views.observations_detail, name='observation-detail'),
     path('observations/<int:pk>/update/', views.ObservationUpdate.as_view(), name='observation-update'),
     path('observations/<int:pk>/delete/', views.ObservationDelete.as_view(), name='observation-delete'),
+    path('observations/<int:observation_id>/add-action/', views.add_action, name='add-action'),
 ]
