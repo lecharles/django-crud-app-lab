@@ -9,3 +9,10 @@ def home(request):
 def observations_index(request):
     observations = Observation.objects.all()
     return render(request, 'observations/index.html', {'observations': observations})
+
+def observations_detail(request, observation_id):
+    try:
+        observation = Observation.objects.get(id=observation_id)
+    except Observation.DoesNotExist:
+        raise Http404('Observation does not exist')
+    return render(request, 'observations/detail.html', {'observation': observation})

@@ -3,7 +3,7 @@
 <h1>Observations</h1>
 <ul>
   {% for observation in observations %}
-    <li>{{ observation.name }}</li>
+    <li><a href="{% url 'observation-detail' observation.id %}">{{ observation.name }}</a></li>
   {% endfor %}
 </ul>
 {% endblock %}
