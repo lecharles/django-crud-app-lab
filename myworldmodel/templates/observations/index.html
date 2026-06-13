@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 <h1>Observations</h1>
+<a href="{% url 'observation-create' %}">Add a New Observation</a>
 <ul>
   {% for observation in observations %}
     <li><a href="{% url 'observation-detail' observation.id %}">{{ observation.name }}</a></li>
