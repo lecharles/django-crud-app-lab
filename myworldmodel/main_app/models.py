@@ -1,10 +1,12 @@
 from django.db import models
 from django.urls import reverse
+from django.contrib.auth.models import User
 
 class Observation(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField()
     observed_at = models.DateTimeField()
+    agent = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self): # equivalent toString
         return self.name
