@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse, Http404
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.utils import timezone
 from .models import Observation
 
@@ -27,3 +27,11 @@ class ObservationCreate(CreateView):
     def form_valid(self, form):
         form.instance.observed_at = timezone.now()
         return super().form_valid(form)
+
+class ObservationUpdate(UpdateView):
+    model = Observation
+    fields = ['name', 'description']
+
+class ObservationDelete(DeleteView):
+    model = Observation
+    success_url = '/observations/'

@@ -3,4 +3,6 @@
 <h1>{{ observation.name }}</h1>
 <p>{{ observation.description }}</p>
 <p>Observed at: {{ observation.observed_at }}</p>
+<a href="{% url 'observation-update' observation.id %}">Edit</a>
+<a href="{% url 'observation-delete' observation.id %}">Delete</a>
 {% endblock %}

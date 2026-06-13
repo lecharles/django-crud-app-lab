@@ -6,4 +6,6 @@ urlpatterns = [
     path('observations/', views.observations_index, name='observation-index'),
     path('observations/create/', views.ObservationCreate.as_view(), name='observation-create'),
     path('observations/<int:observation_id>/', views.observations_detail, name='observation-detail'),
+    path('observations/<int:pk>/update/', views.ObservationUpdate.as_view(), name='observation-update'),
+    path('observations/<int:pk>/delete/', views.ObservationDelete.as_view(), name='observation-delete'),
 ]
