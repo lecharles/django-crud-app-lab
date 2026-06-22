@@ -72,7 +72,7 @@ class ObservationCreate(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
 
 
-class ObservationUpdate(LoginRequiredMixin, CreateView):
+class ObservationUpdate(LoginRequiredMixin, UpdateView):
     model = Observation
     fields = ['name', 'description']
 
@@ -81,7 +81,7 @@ class ObservationUpdate(LoginRequiredMixin, CreateView):
         return Observation.objects.filter(agent=self.request.user)
 
 
-class ObservationDelete(LoginRequiredMixin, CreateView):
+class ObservationDelete(LoginRequiredMixin, DeleteView):
     model = Observation
     success_url = '/observations/'
 
@@ -90,7 +90,7 @@ class ObservationDelete(LoginRequiredMixin, CreateView):
         return Observation.objects.filter(agent=self.request.user)
 
 
-class ActionUpdate(LoginRequiredMixin, CreateView):
+class ActionUpdate(LoginRequiredMixin, UpdateView):
     model = Action
     fields = ['description']
 
