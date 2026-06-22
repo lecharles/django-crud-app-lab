@@ -38,6 +38,10 @@ Seed data: python3 manage.py loaddata seed (expects users agent0 through agent4 
 
 ![ERD](ERD.png)
 
+## Screenshots
+
+Walkthrough of full CRUD, auth, and the overview table in [screenshots/](screenshots/).
+
 ## Sources
 
 - Fixtures: https://docs.djangoproject.com/en/6.0/howto/initial-data/
